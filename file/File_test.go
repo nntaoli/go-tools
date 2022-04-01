@@ -17,3 +17,7 @@ func TestGetFileMd5(t *testing.T) {
 	f, _ := os.Open("File.go")
 	t.Log(GetFileMd5(f))
 }
+
+func TestEnsureCreateFile(t *testing.T) {
+	t.Log(EnsureCreateFile("a/b/c/xx.go"))
+}
