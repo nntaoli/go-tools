@@ -42,7 +42,7 @@ type Logger struct {
 	prefix string
 }
 
-var Log = NewLogger()
+var Log = NewLogger().WithLongFile()
 
 func SetOut(out io.Writer) {
 	Log.SetOut(out)
@@ -114,7 +114,7 @@ func Panicf(format string, args ...interface{}) {
 
 func NewLogger() *Logger {
 	return &Logger{
-		Logger: log.New(os.Stderr, "", log.LstdFlags|log.Lshortfile|log.Lmsgprefix),
+		Logger: log.New(os.Stderr, "", log.LstdFlags|log.Lmsgprefix),
 		level:  INFO,
 	}
 }
@@ -138,6 +138,16 @@ func (l *Logger) SetOut(out io.Writer) {
 func (l *Logger) SetPrefix(prefix string) {
 	l.prefix = prefix
 	l.Logger.SetPrefix("")
+}
+
+func (l *Logger) WithShortFile() *Logger {
+	l.SetFlags(l.Flags() | log.Lshortfile)
+	return l
+}
+
+func (l *Logger) WithLongFile() *Logger {
+	l.SetFlags(l.Flags() | log.Llongfile)
+	return l
 }
 
 func (l *Logger) Output(calldepth int, le Level, prefix string, log string) {

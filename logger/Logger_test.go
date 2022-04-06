@@ -16,5 +16,5 @@ func TestInfo(t *testing.T) {
 	Error("error")
 	Debug("debug")
 	Warn("warn")
-	Fatal("fatal")
+	//	Fatal("fatal")
 }
