@@ -1,6 +1,7 @@
 package numeric
 
 import (
+	"math"
 	"testing"
 )
 
@@ -48,4 +49,8 @@ func TestToUint64(t *testing.T) {
 	t.Log(ToUint64("1234"))
 	t.Log(ToUint64(1.23))  //strconv.ParseUint: parsing "1.23": invalid syntax
 	t.Log(ToUint64(-1.23)) //strconv.ParseUint: parsing "-1.23": invalid syntax
+}
+
+func TestBigMul(t *testing.T) {
+	t.Log(BigMul(math.MaxInt32, math.MaxInt64))
 }

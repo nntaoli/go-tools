@@ -3,6 +3,7 @@ package numeric
 import (
 	"fmt"
 	"math"
+	"math/big"
 	"strconv"
 )
 
@@ -60,4 +61,11 @@ func ToInt64(v interface{}) (int64, error) {
 
 func ToUint64(v interface{}) (uint64, error) {
 	return strconv.ParseUint(fmt.Sprint(v), 10, 64)
+}
+
+// BigMul
+//两个大数相乘，防止溢出
+func BigMul(a, b int64) string {
+	var r = big.NewInt(0)
+	return r.Mul(big.NewInt(a), big.NewInt(b)).String()
 }
