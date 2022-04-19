@@ -3,6 +3,7 @@ package numeric
 import (
 	"fmt"
 	"math"
+	"strconv"
 )
 
 //ToFixedDecimal
@@ -47,4 +48,16 @@ func ToString(v interface{}) string {
 	default:
 		return fmt.Sprint(v)
 	}
+}
+
+func ToFloat64(v interface{}) (float64, error) {
+	return strconv.ParseFloat(fmt.Sprint(v), 64)
+}
+
+func ToInt64(v interface{}) (int64, error) {
+	return strconv.ParseInt(fmt.Sprint(v), 10, 64)
+}
+
+func ToUint64(v interface{}) (uint64, error) {
+	return strconv.ParseUint(fmt.Sprint(v), 10, 64)
 }
