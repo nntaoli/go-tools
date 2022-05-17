@@ -21,3 +21,7 @@ func TestGetFileMd5(t *testing.T) {
 func TestEnsureCreateFile(t *testing.T) {
 	t.Log(EnsureCreateFile("a/b/c/xx.go"))
 }
+
+func TestGetProgramRunningDir(t *testing.T) {
+	t.Log(GetProgramRunningDir())
+}

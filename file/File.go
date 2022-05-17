@@ -7,6 +7,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"path/filepath"
 )
 
 func IsPathExists(path string) (bool, error) {
@@ -46,4 +47,14 @@ func EnsureCreateFile(f string) error {
 	}
 	_, err = os.Create(f)
 	return err
+}
+
+//GetProgramRunningDir
+//获取程序运行目录
+func GetProgramRunningDir() (string, error) {
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		return "", err
+	}
+	return dir, nil
 }
