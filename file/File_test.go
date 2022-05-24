@@ -24,4 +24,5 @@ func TestEnsureCreateFile(t *testing.T) {
 
 func TestGetProgramRunningDir(t *testing.T) {
 	t.Log(GetProgramRunningDir())
+	t.Log(os.UserHomeDir())
 }
