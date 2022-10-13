@@ -4,6 +4,7 @@ import (
 	"crypto/md5"
 	"encoding/hex"
 	"io"
+	"io/ioutil"
 	"log"
 	"os"
 	"path"
@@ -57,4 +58,15 @@ func GetProgramRunningDir() (string, error) {
 		return "", err
 	}
 	return dir, nil
+}
+
+func IsEmptyDir(dir string) (bool, error) {
+	files, err := ioutil.ReadDir(dir)
+	if err != nil {
+		return false, err
+	}
+	if len(files) == 0 {
+		return true, nil
+	}
+	return false, nil
 }

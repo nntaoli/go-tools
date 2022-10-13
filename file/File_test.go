@@ -26,3 +26,7 @@ func TestGetProgramRunningDir(t *testing.T) {
 	t.Log(GetProgramRunningDir())
 	t.Log(os.UserHomeDir())
 }
+
+func TestIsEmptyDir(t *testing.T) {
+	t.Log(IsEmptyDir("/home/empty"))
+}
