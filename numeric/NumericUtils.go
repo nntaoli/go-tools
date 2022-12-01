@@ -42,26 +42,34 @@ func ToString(v interface{}) string {
 	if v == nil {
 		return ""
 	}
-
 	switch v.(type) {
-	case float64, float32:
-		return fmt.Sprintf("%.6f", v)
+	case float64:
+		fNumber := v.(float64)
+		fNumber = math.Round(fNumber*100000000.0) / 100000000.0
+		return strconv.FormatFloat(fNumber, 'f', -1, 64) //StripTrailingZeros
+	case float32:
+		fNumber := v.(float32)
+		fNumber2 := math.Round(float64(fNumber*100000000.0)) / 100000000.0
+		return strconv.FormatFloat(fNumber2, 'f', -1, 64) //StripTrailingZeros
 	default:
 		return fmt.Sprint(v)
 	}
+
 }
 
-func ToFloat64(v interface{}) (float64, error) {
-	return strconv.ParseFloat(fmt.Sprint(v), 64)
-}
+//see:	github.com/spf13/cast
 
-func ToInt64(v interface{}) (int64, error) {
-	return strconv.ParseInt(fmt.Sprint(v), 10, 64)
-}
-
-func ToUint64(v interface{}) (uint64, error) {
-	return strconv.ParseUint(fmt.Sprint(v), 10, 64)
-}
+//func ToFloat64(v interface{}) (float64, error) {
+//	return strconv.ParseFloat(fmt.Sprint(v), 64)
+//}
+//
+//func ToInt64(v interface{}) (int64, error) {
+//	return strconv.ParseInt(fmt.Sprint(v), 10, 64)
+//}
+//
+//func ToUint64(v interface{}) (uint64, error) {
+//	return strconv.ParseUint(fmt.Sprint(v), 10, 64)
+//}
 
 // BigMul
 //两个大数相乘，防止溢出
