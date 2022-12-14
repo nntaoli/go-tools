@@ -2,10 +2,10 @@ package go_tools
 
 import "testing"
 
-//BenchmarkRandStr-8   	   97837	     12284 ns/op
+//BenchmarkRandStr-6   	  129830	      9590 ns/op
 func BenchmarkRandStr(b *testing.B) {
 	for i := 0; i < b.N; i++ {
-		RandStr(8)
+		RandStr(12)
 	}
 }
 

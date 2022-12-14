@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var char = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ/"
+var char = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ"
 
 //其他经常用的零碎方法集合
 
@@ -25,7 +25,7 @@ func RandStr(l int) (rndStr string) {
 	}
 
 	for _, i := range passBytes {
-		c := char[i%63]
+		c := char[i%61]
 		rndStr += string(c)
 	}
 
