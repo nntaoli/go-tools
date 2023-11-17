@@ -1,6 +1,8 @@
 package numeric
 
 import (
+	"crypto/rand"
+	"encoding/binary"
 	"fmt"
 	"math"
 	"math/big"
@@ -76,4 +78,24 @@ func ToString(v interface{}) string {
 func BigMul(a, b int64) string {
 	var r = big.NewInt(0)
 	return r.Mul(big.NewInt(a), big.NewInt(b)).String()
+}
+
+// RandN
+// Generate a random number between min and max
+func RandN(min, max uint64) uint64 {
+	var (
+		rndBytes []byte
+		n        int
+		err      error
+	)
+
+	rndBytes = make([]byte, 8)
+
+re:
+	n, err = rand.Read(rndBytes)
+	if err != nil || n < 8 {
+		goto re
+	}
+
+	return binary.BigEndian.Uint64(rndBytes)%(max-min) + min
 }

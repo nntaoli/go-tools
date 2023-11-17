@@ -35,3 +35,13 @@ func TestToString(t *testing.T) {
 func TestBigMul(t *testing.T) {
 	t.Log(BigMul(math.MaxInt32, math.MaxInt64))
 }
+
+func TestRandNum(t *testing.T) {
+	t.Log(RandN(10000, 99999))
+}
+
+func BenchmarkRandNum(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		RandN(10000, 99999)
+	}
+}
